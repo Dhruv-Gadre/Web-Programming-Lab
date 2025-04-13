@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Question 2</title>
+  </head>
+  <style>
+    .bg_colour {
+      background-color: lightblue;
+    }
+    button:hover{
+      background-color: red;
+    }
+  </style>
+  <body>
+    <h1 id="head">Hello i am the heading</h1>
+    <label for="username"></label>
+    <input type="text" name="username" />
+    <input type="radio" name="gender" id="" value="Male" />
+    <input type="radio" name="gender" id="" value="Female" />
+    <input type="radio" name="gender" id="" value="Helicopter" />
+    <p class="info">Hello i am para 1</p>
+    <p class="info">Hello i am para 2</p>
+    <p>Hello i am para 3</p>
+    <p>Hello i am para 4</p>
+    <p class="info">Hello i am para 5</p>
+    <ul>
+      <li class="input-field">obj1</li>
+      <li class="input-field">obj2</li>
+      <li class="input-field">obj3</li>
+      <li class="input-field">obj4</li>
+    </ul>
+
+    <input type="checkbox" name="" class="hobby" value="Check box 1" />
+    <input type="checkbox" name="" value="Check box 2" />
+    <input type="checkbox" name="" class="hobby" value="Check box 3" /><br />
+
+    <button onclick="a()">byID</button>
+    <button onclick="b()">byName</button>
+    <button onclick="c()">byTagName</button>
+    <button onclick="d()">byClassName</button>
+    <button onclick="e()">byQuerySelector</button>
+    <button onclick="f()">byQuerySelectorAll</button>
+
+    <div id="ans"></div>
+
+    <script>
+      const ans = document.getElementById("ans");
+      function a() {
+        const head = document.getElementById("head");
+        head.innerText = "Updated Title";
+      }
+
+      function b() {
+        const user = document.getElementsByName("username");
+        for (let i = 0; i < user.length; i++) {
+          user[i].value = "John Doe";
+          console.log(user[i].value);
+        }
+
+        const genderRadios = document.getElementsByName("gender");
+        for (let i = 0; i < genderRadios.length; i++) {
+          if (genderRadios[i].checked) {
+            console.log(genderRadios[i].value);
+          }
+        }
+      }
+
+      function c() {
+        const ps = document.getElementsByTagName("p");
+        ans.textContent = "";
+        const count = document.createElement("h3");
+        count.innerHTML =
+          "There are : " + ps.length + " <p> elements in the page";
+        ans.appendChild(count);
+        const li = document.getElementsByTagName("li");
+        console.log(li);
+        for (let i = 0; i < li.length; i++) {
+          if (li[i].parentElement.tagName === "UL") {
+            console.log(li[i].innerText);
+          }
+        }
+      }
+
+      function d() {
+        const ip = document.getElementsByClassName("input-field");
+        console.log(ip);
+        for (let i = 0; i < ip.length; i++) {
+          ip[i].classList.add("bg_colour");
+        }
+      }
+
+      function e() {
+        const p = document.querySelector(".info");
+        p.innerText = "This is the first info paragraph!!";
+
+        const g = document.querySelector("input[name='gender'][type='radio']");
+        g.checked = true;
+      }
+
+      function f() {
+        const ps = document.querySelectorAll(".info");
+        for (let i = 0; i < ps.length; i++) {
+          console.log(ps[i].innerText);
+        }
+        const hobbies = document.querySelectorAll(
+          "input[type='checkbox'][class='hobby']"
+        );
+        for (let i = 0; i < hobbies.length; i++) {
+          hobbies[i].checked = true;
+          console.log(hobbies[i].value);
+        }
+      }
+    </script>
+  </body>
+</html>

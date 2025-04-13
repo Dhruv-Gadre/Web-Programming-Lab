@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>23BCE5132 Form Validation</title>
+  </head>
+  <style>
+    #heading {
+      display: flex;
+      height: 45px;
+      justify-content: space-between;
+    }
+  </style>
+  <body>
+    <form name="myForm" onsubmit="return validate()">
+      <fieldset>
+        <div id="heading">
+          <h2>Text Validation using Javascript</h2>
+          <input type="text" name="" id="abhi" />
+        </div>
+        <table>
+          <tr>
+            <td>Name<span style="color: red">*</span></td>
+            <td><input type="text" name="first" required /></td>
+          </tr>
+          <tr>
+            <td>Address</td>
+            <td><input type="text" name="last" required /></td>
+          </tr>
+          <tr>
+            <td>Zip Code<span style="color: red">*</span></td>
+            <td><input type="text" name="email" id="zip" /></td>
+          </tr>
+          <tr>
+            <td>Country<span style="color: red">*</span></td>
+            <td>
+              <select name="country" id="country" required>
+                <option value="Just_Checking">Please Select a country</option>
+                <option value="ind">India</option>
+                <option value="pak">Pakistan</option>
+                <option value="ban">Bangladesh</option>
+                <option value="aus">Australia</option>
+                <option value="eng">England</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Gender<span style="color: red">*</span></td>
+            <td>
+              <input
+                type="radio"
+                id="male"
+                name="gender"
+                value="male"
+                required
+              />
+              <label for="male">Male</label>
+              <input
+                type="radio"
+                id="female"
+                name="gender"
+                value="female"
+                required
+              />
+              <label for="css">Female</label><br />
+            </td>
+          </tr>
+          <tr>
+            <td>Preferences<span style="color: red">*</span></td>
+            <td>
+              <input type="checkbox" name="red" id="red" required value="red" />
+              <label for="red">Red</label>
+              <input
+                type="checkbox"
+                name="green"
+                id="green"
+                required
+                value="green"
+              />
+              <label for="green">Green</label>
+              <input
+                type="checkbox"
+                name="blue"
+                id="blue"
+                required
+                value="blue"
+              />
+              <label for="blue">Blue</label>
+            </td>
+          </tr>
+          <tr>
+            <td>Phone<span style="color: red">*</span></td>
+            <td>
+              <input type="text" placeholder="Enter No." required id="phone" />
+            </td>
+          </tr>
+          <tr>
+            <td>Email<span style="color: red">*</span></td>
+            <td>
+              <input type="text" placeholder="Enter mail" required id="mail" />
+            </td>
+          </tr>
+          <tr>
+            <td>Password(6-8 characters)<span style="color: red">*</span></td>
+            <td>
+              <input
+                type="password"
+                placeholder="Enter Password"
+                required
+                id="passW"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Verify Password<span style="color: red">*</span></td>
+            <td>
+              <input
+                type="password"
+                placeholder="Re-enter Password"
+                required
+                id="passW2"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td><button type="submit">SEND</button></td>
+            <td><button>CLEAR</button></td>
+          </tr>
+        </table>
+      </fieldset>
+    </form>
+
+    <script>
+      setInterval(() => {
+        const abhi = document.getElementById("abhi");
+        let now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        let seconds = now.getSeconds();
+        let text = `Time: ${hours}:${minutes}:${seconds}`;
+        abhi.value = text;
+      }, 1000);
+      function validate() {
+        let valid = true;
+
+        // Validate Name
+        const nameField = document.myForm.first.value;
+        if (nameField.length < 15) {
+          alert("Name must be at least 15 characters.");
+          valid = false;
+        }
+
+        // Validate Zip Code (6-digit number)
+        const zipPattern = /^\d{6}$/;
+        const zipInput = document.getElementById("zip").value;
+        if (!zipPattern.test(zipInput)) {
+          alert("Invalid Zip Code. Must be 6 digits.");
+          valid = false;
+        }
+
+        // Validate Phone Number (10-digit number)
+        const phonePattern = /^\d{10}$/;
+        const phoneInput = document.getElementById("phone").value;
+        if (!phonePattern.test(phoneInput)) {
+          alert("Invalid Phone Number. Must be 10 digits.");
+          valid = false;
+        }
+
+        // Validate Email
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const emailInput = document.getElementById("mail").value;
+        if (!emailPattern.test(emailInput)) {
+          alert("Invalid Email.");
+          valid = false;
+        }
+
+        // Validate Password
+        const passwordPattern =
+          /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,15}$/;
+        const pass1 = document.getElementById("passW").value;
+        const pass2 = document.getElementById("passW2").value;
+
+        if (!passwordPattern.test(pass1)) {
+          alert(
+            "Password must be 8-15 characters and include a number, letter, and special character."
+          );
+          valid = false;
+        }
+
+        if (pass1 !== pass2) {
+          alert("Passwords do not match.");
+          valid = false;
+        }
+
+        return valid;
+      }
+    </script>
+  </body>
+</html>

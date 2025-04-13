@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Question 3</title>
+  </head>
+  <style>
+    img {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+    }
+    h2 {
+      text-align: center;
+    }
+    .names {
+      display: flex;
+      gap: 2%;
+    }
+    html,
+    body {
+      height: 100vh;
+      width: 100vw;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    form {
+      width: 50%;
+      background-color: rgb(114, 148, 114);
+      padding: 20px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+    input {
+      border-radius: 10px;
+      width: 150px;
+    }
+    .wt {
+      border-radius: 6px;
+      width: 6%;
+    }
+    .item {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 20px;
+    }
+
+    label {
+      font-weight: bolder;
+    }
+    #products {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .object {
+      display: flex;
+      justify-content: space-around;
+      padding-bottom: 10px;
+    }
+    #btn {
+      background-color: orange;
+      color: white;
+      font-weight: bolder;
+    }
+    #btn:hover {
+      background-color: green;
+    }
+  </style>
+  <body>
+    <form action="">
+      <fieldset>
+        <h2>Grocery Order Form</h2>
+        <div class="item">
+          <label for="name">Customer Name</label>
+          <div class="names"><input type="text" /><input type="text" /></div>
+        </div>
+        <div class="item">
+          <label for="phone">Phone Number</label>
+          <input type="text" />
+        </div>
+        <div class="item">
+          <label for="mail">Email</label>
+          <input type="text" name="" id="" />
+        </div>
+      </fieldset>
+      <fieldset>
+        <h3>Products</h3>
+        <div id="products">
+          <div class="object">
+            <img src="./Images/apple.jpg" alt="apple" />
+            <div class="check">
+              <input type="checkbox" name="" id="" />
+              <label for="apple">Apple</label>
+            </div>
+            <label for="" class="price">$10</label>
+            <input type="text" name="" id="" class="wt" />
+            <label for="wt">Kg</label>
+          </div>
+          <div class="object">
+            <img src="./Images/banana.jpg" alt="banana" />
+            <div class="check">
+              <input type="checkbox" name="" id="" />
+              <label for="banana">Banana</label>
+            </div>
+            <label for="" class="price">$5</label>
+            <input type="text" name="" id="" class="wt" />
+            <label for="wt">Kg</label>
+          </div>
+          <div class="object">
+            <img src="./Images/avocado.jpg" alt="avocado" />
+            <div class="check">
+              <input type="checkbox" name="" id="" />
+              <label for="avocado">Avocado</label>
+            </div>
+            <label for="" class="price">$7</label>
+            <input type="text" name="" class="wt" /> <label for="wt">Kg</label>
+          </div>
+          <p><input id="btn" type="submit" value="Submit" /></p>
+        </div>
+      </fieldset>
+    </form>
+    <script>
+      document
+        .querySelector("form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevents form from reloading
+
+          const name =
+            document.querySelectorAll(".names input")[0].value +
+            " " +
+            document.querySelectorAll(".names input")[1].value;
+          const phone = document.querySelectorAll("input")[2].value;
+          const email = document.querySelectorAll("input")[3].value;
+
+          let total = 0;
+          const products = [];
+          document.querySelectorAll(".object").forEach((item) => {
+            const checkbox = item.querySelector("input[type='checkbox']");
+            const quantity = parseFloat(item.querySelector(".wt").value);
+            const label = item.querySelector("label").textContent;
+            const price = parseFloat(
+              item.querySelector(".price").textContent.replace("$", "")
+            );
+
+            if (checkbox.checked && quantity > 0) {
+              products.push({
+                name: label,
+                quantity,
+                price,
+                subtotal: price * quantity,
+              });
+              total += price * quantity;
+            }
+          });
+
+          localStorage.setItem(
+            "receiptData",
+            JSON.stringify({ name, phone, email, products, total })
+          );
+          window.location.href = "q3_2.html"; // Redirect to receipt page
+        });
+    </script>
+  </body>
+</html>

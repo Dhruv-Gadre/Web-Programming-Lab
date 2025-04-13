@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI Calculation</title>
+    <style>
+      table {
+        width: 50%;
+        border-collapse: collapse;
+        margin: 20px;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: left;
+      }
+      th {
+        background-color: #f4f4f4;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center">
+            BMI Calculator
+            <label for="gender"></label>
+            <select name="gender" id="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span style="font-weight: bold">Enter your Weight:</span><br />
+            <label for="weight">(in pounds)</label>
+            <input type="text" id="weight" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span style="font-weight: bold">Enter your Height:</span><br />
+            <label for="height_f">(feet)</label>
+            <input type="text" id="feet" /><br /><br />
+            <label for="height_i">(inches)</label>
+            <input type="text" id="inches" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button style="margin-left: 35%" onclick="calculate()">
+              Calculate
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tr>
+        <td>
+          Your BMI:
+          <label for=""></label>
+          <input type="text" name="ans" id="ans" />
+        </td>
+      </tr>
+    </table>
+    <script>
+      function calculate() {
+        const feet = parseInt(document.getElementById("feet").value);
+        const inches = parseInt(document.getElementById("inches").value);
+        const tot_height = feet * 12 + inches;
+        const weight = parseFloat(document.getElementById("weight").value);
+        const bmi = (weight * 703) / (tot_height * tot_height);
+        let status = "";
+        const gender = document.getElementById("gender").value;
+        if (gender == "male") {
+          if (bmi < 17.5) {
+            status = "Anorexia";
+          } else if (bmi <= 20.7) {
+            status = "underweight";
+          } else if (bmi <= 26.4) {
+            status = "Ideal Range";
+          } else if (bmi <= 27.8) {
+            status = "Marginally overweight";
+          } else if (bmi <= 20.7) {
+            status = "Overweight";
+          } else {
+            status = "Obese";
+          }
+        } else {
+          if (bmi < 17.5) {
+            status = "Anorexia";
+          } else if (bmi <= 19.1) {
+            status = "underweight";
+          } else if (bmi <= 25.8) {
+            status = "Ideal Range";
+          } else if (bmi <= 27.3) {
+            status = "Marginally overweight";
+          } else if (bmi <= 32.3) {
+            status = "Overweight";
+          } else {
+            status = "Obese";
+          }
+        }
+        const ans = document.getElementById("ans");
+        let formattedBmi = bmi.toFixed(2);
+        ans.value = String(formattedBmi);
+        alert("You are/have : " + status);
+      }
+    </script>
+  </body>
+</html>

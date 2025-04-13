@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Age in Years</title>
+  </head>
+  <body>
+    <input type="date" name="bd" id="birth_date" onchange="showAge()" />
+    <script>
+      function calculateAgeInYears(birthDate) {
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        return age;
+      }
+
+      function showAge() {
+        const birth_date = document.getElementById("birth_date");
+        birth_date.addEventListener("mouseover", () => {
+          const birthDateValue = document.getElementById("birth_date").value;
+          if (birthDateValue) {
+            const birthDate = new Date(birthDateValue);
+            const age = calculateAgeInYears(birthDate);
+            alert("Your age is " + age + " years");
+          } else {
+            alert("Please select a birth date.");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

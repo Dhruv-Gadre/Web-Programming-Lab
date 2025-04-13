@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temperature Classification</title>
+    <style>
+      table {
+        width: 50%;
+        border-collapse: collapse;
+        margin: 20px;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: #f4f4f4;
+      }
+    </style>
+  </head>
+  <body>
+    <button type="button" onclick="show_result()">
+      Click me to see results
+    </button>
+    <h2>Temperature Classification</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Temperature (°F)</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+
+    <script>
+      const temp = [
+        55, 62, 68, 74, 59, 45, 41, 58, 60, 67, 65, 78, 82, 88, 91, 92, 90, 93,
+        87, 80, 78, 79, 72, 68, 61, 59, 55, 65,
+      ];
+      const category = [];
+      let hotDays = 0,
+        coldDays = 0,
+        pleasantDays = 0;
+
+      function show_result() {
+        for (let index = 0; index < temp.length; index++) {
+          const element = temp[index];
+
+          if (element >= 85) {
+            hotDays++;
+            category[index] = "Hot";
+          } else if (element >= 60 && element < 85) {
+            pleasantDays++;
+            category[index] = "Pleasant";
+          } else {
+            coldDays++;
+            category[index] = "Cold";
+          }
+        }
+        const tableBody = document.getElementById("table-body");
+        for (let i = 0; i < temp.length; i++) {
+          let row = `<tr>
+                    <td>${temp[i]}</td>
+                    <td>${category[i]}</td>
+                </tr>`;
+          tableBody.innerHTML += row;
+        }
+      }
+    </script>
+  </body>
+</html>

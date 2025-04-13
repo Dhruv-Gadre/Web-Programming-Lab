@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>23BCE5132</title>
+</head>
+<body style="width: max-content;">
+    <a href="./lab4_2.html">
+        <button>See Question 2</button>
+    </a>
+    <form action="#" method="post">
+        <fieldset>
+            <legend><b>Login</b></legend>
+            <label for="username">Username*</label><br>
+            <input type="text" id="username" name="username" required><br><br>
+
+            <label for="password">Password*</label><br>
+            <input type="password" id="password" name="password" required><br>
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+            <legend><b>Gender*</b></legend>
+            <input type="radio" id="male" name="gender" value="male" required>
+            <label for="male">Male</label>
+
+            <input type="radio" id="female" name="gender" value="female" required>
+            <label for="female">Female</label>
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+            <legend><b>Programming Skill</b></legend>
+            <input type="checkbox" id="java" name="skill" value="java">
+            <label for="java">Java</label>
+
+            <input type="checkbox" id="cpp" name="skill" value="cpp">
+            <label for="cpp">C++</label>
+
+            <input type="checkbox" id="csharp" name="skill" value="csharp">
+            <label for="csharp">C#</label>
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+            <legend><b>Fruit</b></legend>
+            <label for="fruit">Choose a fruit:</label>
+            <select id="fruit" name="fruit">
+                <option value="apple">Apple</option>
+                <option value="banana" selected>Banana</option>
+                <option value="cherry">Cherry</option>
+            </select>
+        </fieldset>
+
+        <br>
+
+        <textarea name="comment" rows="5" cols="40" placeholder="Enter your comment here"></textarea>
+
+        <br><br>
+
+        <input type="submit" value="SEND">
+        <input type="reset" value="RESET">
+    </form>
+</body>
+</html>

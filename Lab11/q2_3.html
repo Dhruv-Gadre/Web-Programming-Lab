@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <textarea name="count" id="coun"></textarea><br />
+    <label for="">See the count here: </label>
+    <input type="text" id="show" /><br />
+    <button onclick="reset()">Reset Counter</button>
+    <script>
+      const coun = document.getElementById("coun");
+      const show = document.getElementById("show");
+      show.value = 0;
+      coun.addEventListener("keyup", () => {
+        show.value = parseInt(show.value) + 1;
+      });
+      function reset() {
+        show.value = 0;
+        coun.value = "";
+      }
+    </script>
+  </body>
+</html>

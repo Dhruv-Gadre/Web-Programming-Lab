@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receipt</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+      }
+      table {
+        margin: auto;
+        border-collapse: collapse;
+        width: 50%;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Grocery Order Receipt</h2>
+    <p><strong>Customer Name:</strong> <span id="custName"></span></p>
+    <p><strong>Phone:</strong> <span id="phone"></span></p>
+    <p><strong>Email:</strong> <span id="email"></span></p>
+
+    <h3>Ordered Items</h3>
+    <table>
+      <tr>
+        <th>Item</th>
+        <th>Quantity (Kg)</th>
+        <th>Price per Kg ($)</th>
+        <th>Subtotal ($)</th>
+      </tr>
+      <tbody id="receiptItems"></tbody>
+    </table>
+
+    <h3>Total Bill: $<span id="total"></span></h3>
+
+    <script>
+      const data = JSON.parse(localStorage.getItem("receiptData"));
+      if (data) {
+        document.getElementById("custName").textContent = data.name;
+        document.getElementById("phone").textContent = data.phone;
+        document.getElementById("email").textContent = data.email;
+        document.getElementById("total").textContent = data.total.toFixed(2);
+
+        const receiptItems = document.getElementById("receiptItems");
+        data.products.forEach((product) => {
+          const row = `<tr>
+                    <td>${product.name}</td>
+                    <td>${product.quantity}</td>
+                    <td>$${product.price.toFixed(2)}</td>
+                    <td>$${product.subtotal.toFixed(2)}</td>
+                </tr>`;
+          receiptItems.innerHTML += row;
+        });
+      }
+    </script>
+  </body>
+</html>

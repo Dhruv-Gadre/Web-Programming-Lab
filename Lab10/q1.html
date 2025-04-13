@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Question1</title>
+    <style>
+      table {
+        width: 50%;
+        border-collapse: collapse;
+        margin: 20px;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: #f4f4f4;
+      }
+      button {
+        margin: 20px;
+        background-color: green;
+        border-radius: 5px;
+        color: white;
+      }
+      button:hover {
+        background-color: yellowgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="table">
+      <thead>
+        <tr>
+          <th>P-Id</th>
+          <th>Name</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Alen</td>
+          <td>39</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Deena</td>
+          <td>47</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Diana</td>
+          <td>21</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Jack</td>
+          <td>54</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Jain</td>
+          <td>23</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Kelvin</td>
+          <td>61</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Louis</td>
+          <td>69</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Rex</td>
+          <td>49</td>
+        </tr>
+      </tbody>
+    </table>
+    <button onclick="Descending()">Sort and print the data</button>
+    <button onclick="Search()">Search for P-Id</button>
+    <button onclick="Filter()">Filter by age range</button>
+    <div id="data"></div>
+    <script>
+      function Descending() {
+        const rows = [];
+        class Person {
+          constructor(name, age) {
+            this.name = name;
+            this.age = age;
+          }
+        }
+        let n = document.getElementById("table").rows.length;
+        for (let i = 1; i < n; i++) {
+          var x = document.getElementById("table").rows[i].cells;
+          const name = x[1].innerText;
+          const age = parseInt(x[2].innerText);
+          rows.push(new Person(name, age));
+        }
+        console.log(rows);
+        rows.sort(function (a, b) {
+          return b.age - a.age;
+        });
+        console.log(rows);
+        let heading = document.createElement("h1");
+        heading.innerText = "Here is the sorted data";
+        let div = document.getElementById("data");
+        div.textContent = "";
+        data.appendChild(heading);
+        for (let i = 0; i < rows.length; i++) {
+          let text = document.createElement("p");
+          text.innerText = rows[i].name + " " + rows[i].age;
+          data.appendChild(text);
+        }
+      }
+
+      function Search() {
+        const id = parseInt(prompt("Please enter the P-Id"));
+        if (id >= 1 && id <= 8) {
+          var x = document.getElementById("table").rows[id].cells;
+          alert("Yes it exists " + x[1].innerText);
+        } else {
+          alert("Does not exist");
+        }
+      }
+
+      function Filter() {
+        const a = parseInt(prompt("Enter the lower limit: "));
+        const b = parseInt(prompt("Enter the upper limit: "));
+        let n = document.getElementById("table").rows.length;
+        const arr = [];
+        for (let i = 1; i < n; i++) {
+          let x = document.getElementById("table").rows[i].cells;
+          let age = parseInt(x[2].innerText);
+          if (age >= a && age <= b) {
+            arr.push(x[1].innerText);
+          }
+        }
+        if (arr.length === 0) {
+          alert("Sorry, no records found");
+        } else {
+          let heading = document.createElement("h2");
+          heading.innerText = "The following people lie in the range";
+          let div = document.getElementById("data");
+
+          div.textContent = ""; // This is to delete all the data in that div
+
+          div.appendChild(heading);
+          for (let i = 0; i < arr.length; i++) {
+            let text = document.createElement("p");
+            text.innerText = arr[i];
+            data.appendChild(text);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

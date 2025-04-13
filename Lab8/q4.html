@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript">
+      function calc() {
+        var hours = parseFloat(document.getElementById("hours").value);
+        var cost = parseFloat(document.getElementById("cost").value);
+        var ans = hours * 45.0 + cost;
+        alert("The total cost is: " + ans);
+      }
+    </script>
+  </head>
+  <body>
+    <h3>Calculating total cost</h3>
+    <form>
+      <label for="hours">Enter the hours worked</label><br />
+      <input type="text" id="hours" name="hours" /><br /><br />
+      <label for="cost">Enter the Labour cost</label><br />
+      <input type="text" id="cost" name="cost" /><br /><br />
+      <button onclick="calc()">Calculate</button>
+    </form>
+  </body>
+</html>

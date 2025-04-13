@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE5132</title>
+    <style>
+        .container {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            border: 2px solid black;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            text-align: center;
+            line-height: 100px;
+            font-weight: bold;
+            color: white;
+        }
+        #box1 { background: red; top: 50px; left: 50px; z-index: 1; }
+        #box2 { background: blue; top: 80px; left: 80px; z-index: 2; }
+        #box3 { background: green; top: 110px; left: 110px; z-index: 3; }
+    </style>
+</head>
+<body>
+    <h2>Control the Z-index</h2>
+    <div class="container">
+        <div id="box1" class="box">Box 1</div>
+        <div id="box2" class="box">Box 2</div>
+        <div id="box3" class="box">Box 3</div>
+    </div>
+
+    <div>
+        <label for="zBox">Select Box:</label>
+        <select id="zBox">
+            <option value="box1">Box 1</option>
+            <option value="box2">Box 2</option>
+            <option value="box3">Box 3</option>
+        </select>
+        <label for="zValue">Set z-index:</label>
+        <input type="number" id="zValue" value="1">
+        <button onclick="changeZIndex()">Update</button>
+    </div>
+
+    <h3>Current z-index values:</h3>
+    <p id="zValues"></p>
+
+    <script>
+        function changeZIndex() {
+            let boxId = document.getElementById("zBox").value;
+            let zIndex = document.getElementById("zValue").value;
+            document.getElementById(boxId).style.zIndex = zIndex;
+            updateZValues();
+        }
+
+        function updateZValues() {
+            let zInfo = `
+                Box 1: ${document.getElementById("box1").style.zIndex}<br>
+                Box 2: ${document.getElementById("box2").style.zIndex}<br>
+                Box 3: ${document.getElementById("box3").style.zIndex}
+            `;
+            document.getElementById("zValues").innerHTML = zInfo;
+        }
+
+        updateZValues();
+    </script>
+</body>
+</html>

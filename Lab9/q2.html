@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boarding Pass</title>
+    <style>
+      table {
+        width: 50%;
+        border-collapse: collapse;
+        margin: 20px;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: #f4f4f4;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hello, Please input number of passengers</h1>
+    <label for="passengers">Enter it here: </label>
+    <input type="text" id="passengers" />
+    <button onclick="pass()">Enter</button>
+    <h2>Boarding Passes</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Seat Number</th>
+          <th>Seat Class</th>
+        </tr>
+      </thead>
+      <tbody id="table_body"></tbody>
+    </table>
+    <script>
+      function pass() {
+        let seats = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        let e_ind = 5;
+        let p_ind = 0;
+        let passenger_seat = -1;
+        let ec = 0;
+        let P_class = "Yo";
+        let pc = 0;
+        const passengers = parseInt(
+          document.getElementById("passengers").value
+        );
+        for (let i = 0; i < passengers; i++) {
+          const name = prompt("Enter your name: ");
+          const choice = parseInt(prompt("Enter your choice please: "));
+          if (choice == 0 && ec == 5) {
+            let change = prompt("Can we change your choice (Y/N)?");
+            if (change == "Y") {
+              choice = 1;
+            } else {
+              continue;
+            }
+          } else if (choice == 1 && pc == 5) {
+            let change = prompt("Can we change your choice (Y/N)?");
+            if (change == "Y") {
+              choice = 0;
+            } else {
+              continue;
+            }
+          }
+
+          if (choice == 1) {
+            pc += 1;
+            seats[p_ind] = "1";
+            passenger_seat = p_ind + 1;
+            p_ind += 1;
+            P_class = "Premium";
+          } else if (choice == 0) {
+            ec += 1;
+            seats[e_ind] = "1";
+            passenger_seat = e_ind + 1;
+            e_ind += 1;
+            P_class = "Economy";
+          }
+
+          const table_body = document.getElementById("table_body");
+          let row = `<tr>
+                  <td>${i + 1}</td>
+                  <td>${name}</td>
+                  <td>${passenger_seat}</td>
+                  <td>${P_class}</td>
+                  </tr>`;
+          table_body.innerHTML += row;
+        }
+      }
+    </script>
+  </body>
+</html>

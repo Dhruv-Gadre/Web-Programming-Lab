@@ -1,0 +1,65 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>23BCE5132</title>  
+</head>  
+<body>  
+    <div id="bit1">  
+        <h1>Timer</h1>  
+        <div style="display: flex;">  
+            <h3 id="hrs">00</h3>  
+            <h3>:</h3>  
+            <h3 id="min">00</h3>  
+            <h3>:</h3>  
+            <h3 id="sec">00</h3>  
+        </div>  
+        <button onclick="start()">Start</button>  
+        <button onclick="stop()">Stop</button>  
+        <button onclick="reset()">Reset</button>  
+    </div>  
+    <script>  
+        const hrs = document.getElementById('hrs');  
+        const min = document.getElementById('min');  
+        const sec = document.getElementById('sec');  
+        let timer_interval;    
+
+        function reset(){  
+            hrs.innerText = "00";  
+            min.innerText = "00";  
+            sec.innerText = "00";  
+            clearInterval(timer_interval);    
+        }  
+
+        function start(){  
+            clearInterval(timer_interval);    
+            timer_interval = setInterval(() => {  
+                let seconds = parseInt(sec.innerText);  
+                let minutes = parseInt(min.innerText);  
+                let hours = parseInt(hrs.innerText);  
+                
+                seconds += 1;  
+                
+                if (seconds === 60) {  
+                    seconds = 0;  
+                    minutes += 1;  
+                }  
+                if (minutes === 60) {  
+                    minutes = 0;  
+                    hours += 1;  
+                }  
+
+                
+                sec.innerText = String(seconds).padStart(2, '0');  
+                min.innerText = String(minutes).padStart(2, '0');  
+                hrs.innerText = String(hours).padStart(2, '0');  
+            }, 1000);  
+        }  
+
+        function stop(){  
+            clearInterval(timer_interval);    
+        }  
+    </script>  
+</body>  
+</html>

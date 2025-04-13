@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 1</title>
+    <style>
+        tr,th{
+            border: 1px solid black;
+        }
+        #bit2{
+            margin-top: 100px;
+        }
+        #bit4{
+            margin-top: 100px;
+        }
+        #bit5{
+            margin-top: 100px;
+        }
+        #button2{
+            background-color: red;
+        }
+        #textbox{
+            margin-top: 100px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="createTable()">Create Table</button>
+    <div id="bit1">
+    </div>
+    <div id="bit2" >
+        <button id="button2">Hover over me</button>
+    </div>
+    <div id="bit3">
+        <textarea name="" id="textbox"></textarea>
+    </div>
+
+    <div id="bit4">
+        <input type="text" id="ip">
+        <ul id="ul">
+            <li>Click Me</li>
+        </ul>
+    </div>
+
+    <div id="bit5">
+        <input id="ip2" type="text" placeholder="input">
+        <input id="ip3" type="text" placeholder="keypress">
+    </div>
+    <script>
+        function createTable(){
+            let table = document.createElement("table");
+            table.border="1";
+            let row = table.insertRow();
+            let col1 = row.insertCell(0);
+            let col2 = row.insertCell(1);
+            let col3 = row.insertCell(2);
+            col1.textContent="Column1"
+            col2.textContent="Column2"
+            col3.textContent="Column3"
+            document.getElementById("bit1").textContent="";
+            document.getElementById("bit1").appendChild(table);
+            for(let i = 1; i < 3 ; i++){
+                row=table.insertRow();
+                col1 = row.insertCell(0);
+                col2 = row.insertCell(1);
+                col3 = row.insertCell(2);
+                col1.textContent=prompt("Enter data: ");
+                col2.textContent=prompt("Enter data: ");
+                col3.textContent=prompt("Enter data: ");
+            }
+        }
+
+        let btn2 = document.getElementById("button2");
+        btn2.addEventListener("mouseover", function(){
+            this.style.backgroundColor="green";
+        })
+        btn2.addEventListener("mouseleave", function(){
+            this.style.backgroundColor="red"
+        })
+
+        let textbox = document.getElementById("textbox");
+        textbox.addEventListener("focus", function(){
+            this.style.backgroundColor="Yellow";
+            this.textContent="Greetings!";
+        })
+        textbox.addEventListener("focusout", function(){
+            this.style.backgroundColor="Green";
+            this.textContent="";
+        })
+
+        let ul = document.getElementById("ul");
+        ul.addEventListener("dblclick", function(){
+            const elem = document.getElementById("ip");
+            let li = document.createElement("li");
+            li.innerText=elem.value;
+            ul.appendChild(li);
+        })
+
+        let count = 0;
+
+        let input = document.getElementById("ip2");
+
+        input.addEventListener("keydown", function(){
+            count++;
+            let input3= document.getElementById("ip3");
+            input3.value=count;
+            
+        })
+    </script>
+</body>
+</html>

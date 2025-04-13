@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="reg">Enter the registration Number:</label>
+    <input type="text" id="reg" />
+    <button onclick="display1()">Done1</button><br />
+
+    <label for="name">Enter your name: </label>
+    <input type="text" id="name" />
+    <button onclick="display2()">Done2</button>
+
+    <div id="for_name"></div>
+  </body>
+  <script>
+    function display1() {
+      var reg = document.getElementById("reg").value;
+      const ans = `<div style="border: 5px solid red; width: 100px; padding-bottom: 10px; text-align: center">${reg}</div>`;
+      document.write(ans);
+    }
+
+    function display2() {
+      var name = document.getElementById("name").value;
+      const res = `<div style="height: 30px; width: 40px; border: 1px solid black ; color: red">${name}</div>`;
+      document.getElementById("for_name").innerHTML = res;
+    }
+  </script>
+</html>
